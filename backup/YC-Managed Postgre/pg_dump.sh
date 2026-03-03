@@ -15,7 +15,7 @@ try_pg_dump() {
     if pg_dump "host=${DB_HOST} \
 port=6432 \
 sslmode=verify-full \
-sslrootcert=/home/${USER}/.postgresql/root.crt \
+sslrootcert=/home/${USER}/.postgresql/HOSTNAME_PLACEHOLDER \
 dbname=${DB_NAME} \
 user=${DB_USER}" \
 --verbose \
@@ -59,10 +59,10 @@ echo "=== Скачивание сертификата ==="
 
 mkdir -p ~/.postgresql
 
-if [ ! -f ~/.postgresql/root.crt ]; then
-    wget "https://storage.yandexcloud.net/cloud-certs/CA.pem" \
-      --output-document ~/.postgresql/root.crt
-    chmod 0655 ~/.postgresql/root.crt
+if [ ! -f ~/.postgresql/HOSTNAME_PLACEHOLDER ]; then
+    wget "URL_PLACEHOLDER" \
+      --output-document ~/.postgresql/HOSTNAME_PLACEHOLDER
+    chmod 0655 ~/.postgresql/HOSTNAME_PLACEHOLDER
     echo "Сертификат загружен"
 else
     echo "Сертификат уже существует, пропуск загрузки"
